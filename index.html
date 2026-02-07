@@ -7,116 +7,149 @@
 
 <style>
 body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: linear-gradient(135deg, #0a0a0a, #1f1f1f, #000000);
-  color: white;
-  text-align: center;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #111;
+    color: white;
+    text-align: center;
 }
 
-.container {
-  padding: 50px 20px;
+header {
+    background: black;
+    padding: 20px;
 }
 
-h1 {
-  font-size: 34px;
-  margin-bottom: 10px;
+.hero img {
+    width: 100%;
+    max-height: 350px;
+    object-fit: cover;
 }
 
-.sub {
-  color: #bbb;
-  margin-bottom: 40px;
+section {
+    padding: 20px;
 }
 
-.form-box {
-  background: #1b1b1b;
-  padding: 30px;
-  border-radius: 14px;
-  max-width: 420px;
-  margin: auto;
-  box-shadow: 0 0 20px rgba(0,0,0,0.6);
+.services, .gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
 }
 
-input {
-  width: 100%;
-  padding: 14px;
-  margin: 12px 0;
-  border: none;
-  border-radius: 8px;
-  background: #2c2c2c;
-  color: white;
-  font-size: 16px;
+.card {
+    background: #222;
+    padding: 15px;
+    border-radius: 10px;
+    width: 250px;
 }
 
-button {
-  width: 100%;
-  padding: 15px;
-  background: #25D366;
-  border: none;
-  border-radius: 10px;
-  font-size: 18px;
-  font-weight: bold;
-  cursor: pointer;
-  margin-top: 20px;
-  color: white;
+.offer {
+    background: gold;
+    color: black;
+    padding: 15px;
+    border-radius: 10px;
+    margin: 20px;
+    font-weight: bold;
 }
 
-button:hover {
-  background: #1ebe5d;
+button, .btn {
+    background: gold;
+    color: black;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    margin: 10px;
 }
 
-.contact {
-  margin-top: 50px;
-  color: #ccc;
-  font-size: 18px;
-  line-height: 1.8;
+.gallery img {
+    width: 90%;
+    max-width: 400px;
+    border-radius: 10px;
+}
+
+footer {
+    background: black;
+    padding: 15px;
+    margin-top: 20px;
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
-  <h1>Style N Sumit Unisex Salon</h1>
-  <div class="sub">Book Your Appointment</div>
+<header>
+<h1>Style N Sumit Unisex Salon</h1>
+<p>Open: 9:00 AM – 9:00 PM</p>
+</header>
 
-  <div class="form-box">
-    <input type="text" id="name" placeholder="Your Name" required>
-    <input type="date" id="date" required>
-    <input type="time" id="time" required>
-
-    <button onclick="sendToWhatsApp()">WhatsApp Booking</button>
-  </div>
-
-  <div class="contact">
-    <p><strong>Contact & Booking</strong></p>
-    <p>Lucky: 94621 20750</p>
-    <p>Sumit: 75974 77986</p>
-  </div>
+<div class="hero">
+<img src="426699757_405513295481184_1448517298834230125_n.webp.jpg">
 </div>
 
-<script>
-function sendToWhatsApp() {
-  let name = document.getElementById("name").value;
-  let date = document.getElementById("date").value;
-  let time = document.getElementById("time").value;
+<section>
+<h2>Services</h2>
 
-  if (name === "" || date === "" || time === "") {
-    alert("Please fill all details first.");
-    return;
-  }
+<div class="services">
 
-  let message = `New Appointment Booking:
-Name: ${name}
-Date: ${date}
-Time: ${time}`;
+<div class="card">
+<h3>Hair Cut (Men)</h3>
+<p>Normal cut – ₹100</p>
+<p>Stylish cut – ₹150</p>
+<p>Beard trim – ₹50</p>
+</div>
 
-  let phone = "919462120750";
-  let url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
+<div class="card">
+<h3>Hair Cut (Women)</h3>
+<p>Basic cut – ₹350</p>
+<p>Layer cut – ₹500</p>
+<p>Straight cut – ₹150</p>
+</div>
 
-  window.open(url, "_blank");
-}
-</script>
+<div class="card">
+<h3>Facial</h3>
+<p>Normal facial – ₹700</p>
+<p>Gold facial – ₹1000</p>
+<p>Diamond facial – ₹1200</p>
+</div>
+
+<div class="card">
+<h3>Hair Spa</h3>
+<p>Basic spa – ₹500</p>
+<p>Keratin spa – ₹700</p>
+<p>Anti-dandruff spa – ₹1200</p>
+</div>
+
+</div>
+
+<div class="offer">
+Hair Week Package – ₹8000<br>
+Special Hair Service – ₹999
+</div>
+</section>
+
+<section>
+<h2>Contact & Booking</h2>
+<p>Address: Sawai Madhopur City Center Mall</p>
+<p>Lucky: 94621 20750</p>
+<p>Sumit: 75974 77986</p>
+
+<a class="btn" href="https://wa.me/919462120750">WhatsApp Booking</a>
+<a class="btn" href="mailto:Rdx.lk427@gmail.com">Email Booking</a>
+</section>
+
+<section>
+<h2>Gallery</h2>
+<div class="gallery">
+<img src="427506271_1052622869153046_2140385892206602579_n.webp.jpg">
+<img src="65e9d8bc50c98f9227be8bb8b9d5dadd.jpg">
+</div>
+</section>
+
+<footer>
+© 2026 Style N Sumit Unisex Salon
+</footer>
 
 </body>
 </html>
