@@ -1,650 +1,194 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Beauty Salon Booking</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- EmailJS for Email Notifications -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-    
-    <!-- Font Awesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Google Fonts - Premium Typography -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Style N Sumit Unisex Salon</title>
 
-    <style>
-        /* PREMIUM DESIGN - Tumhare images jaisa */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #ffffff;
+    color: #111;
+    text-align: center;
+}
 
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background: linear-gradient(135deg, #f5f5dc 0%, #fdf6e3 50%, #f0e68c 100%);
-            color: #333;
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+header {
+    background: black;
+    color: white;
+    padding: 20px;
+}
 
-        .container {
-            max-width: 500px;
-            margin: 20px auto;
-            padding: 30px;
-            background: rgba(255,255,255,0.95);
-            border-radius: 25px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
-            backdrop-filter: blur(10px);
-        }
+.hero img {
+    width: 100%;
+    max-height: 350px;
+    object-fit: cover;
+}
 
-        h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5em;
-            background: linear-gradient(45deg, #d4af37, #f0e68c);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 10px;
-            text-align: center;
-        }
+section {
+    padding: 20px;
+}
 
-        .subtitle {
-            text-align: center;
-            color: #666;
-            font-size: 1.1em;
-            margin-bottom: 30px;
-        }
+.services {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
 
-        /* Services Dropdown */
-        .service-section {
-            background: linear-gradient(135deg, #000 0%, #333 100%);
-            padding: 20px;
-            border-radius: 20px;
-            margin: 20px 0;
-            color: white;
-        }
+.card {
+    background: #f1f1f1;
+    padding: 15px;
+    border-radius: 10px;
+    width: 260px;
+}
 
-        .service-select {
-            width: 100%;
-            padding: 15px;
-            font-size: 1.1em;
-            border: none;
-            border-radius: 15px;
-            background: rgba(255,255,255,0.1);
-            color: white;
-            backdrop-filter: blur(10px);
-        }
+.offer {
+    background: gold;
+    padding: 15px;
+    border-radius: 10px;
+    margin: 20px;
+    font-weight: bold;
+}
 
-        /* Form Styling */
-        input, select {
-            width: 100%;
-            padding: 18px;
-            margin: 12px 0;
-            border: 2px solid #e0e0e0;
-            border-radius: 15px;
-            font-size: 1em;
-            transition: all 0.3s ease;
-            background: rgba(255,255,255,0.9);
-        }
+input, button {
+    padding: 12px;
+    width: 80%;
+    max-width: 300px;
+    margin: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
 
-        input:focus, select:focus {
-            outline: none;
-            border-color: #d4af37;
-            box-shadow: 0 0 20px rgba(212,175,55,0.3);
-            transform: translateY(-2px);
-        }
+button {
+    background: gold;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
 
-        /* Premium Buttons */
-        button {
-            width: 100%;
-            padding: 20px;
-            margin: 15px 0;
-            border: none;
-            border-radius: 20px;
-            font-size: 1.2em;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
+.gallery img {
+    width: 90%;
+    max-width: 400px;
+    border-radius: 10px;
+    margin: 10px 0;
+}
 
-        .book-btn {
-            background: linear-gradient(45deg, #d4af37, #f0e68c);
-            color: white;
-            box-shadow: 0 10px 30px rgba(212,175,55,0.4);
-        }
+footer {
+    background: black;
+    color: white;
+    padding: 15px;
+    margin-top: 20px;
+}
+</style>
 
-        .book-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(212,175,55,0.6);
-        }
-
-        .whatsapp-btn {
-            background: #25D366;
-            color: white;
-            margin-top: 10px;
-        }
-
-        /* Messages */
-        .success {
-            color: #28a745;
-            background: rgba(40,167,69,0.1);
-            padding: 15px;
-            border-radius: 15px;
-            border-left: 5px solid #28a745;
-            margin: 15px 0;
-            font-weight: 600;
-        }
-
-        .error {
-            color: #dc3545;
-            background: rgba(220,53,69,0.1);
-            padding: 15px;
-            border-radius: 15px;
-            border-left: 5px solid #dc3545;
-            margin: 15px 0;
-            font-weight: 600;
-        }
-
-        /* Coins Section */
-        .coins-section {
-            background: linear-gradient(135deg, #ffd700, #ffed4e);
-            padding: 20px;
-            border-radius: 20px;
-            margin: 20px 0;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(255,215,0,0.3);
-        }
-
-        .coins-count {
-            font-size: 2em;
-            font-weight: bold;
-            color: #b8860b;
-        }
-
-        /* Rating Stars */
-        .stars {
-            font-size: 2em;
-            color: #ddd;
-            cursor: pointer;
-            margin: 10px 0;
-        }
-
-        .stars .star.active {
-            color: #ffd700;
-        }
-
-        /* Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.8);
-            z-index: 1000;
-            backdrop-filter: blur(10px);
-        }
-
-        .modal-content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: white;
-            padding: 40px;
-            border-radius: 25px;
-            max-width: 400px;
-            width: 90%;
-            text-align: center;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-        }
-
-        /* Header - Radiance Style */
-        .header {
-            background: linear-gradient(135deg, #000 0%, #111 100%);
-            color: white;
-            padding: 20px;
-            border-radius: 20px;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        .header h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.2em;
-            background: linear-gradient(45deg, #d4af37, white);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        /* Social Links */
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin: 20px 0;
-        }
-
-        .social-links a {
-            display: inline-block;
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(45deg, #d4af37, #f0e68c);
-            color: white;
-            text-decoration: none;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5em;
-            transition: transform 0.3s ease;
-        }
-
-        .social-links a:hover {
-            transform: scale(1.2) rotate(360deg);
-        }
-
-        /* Music Toggle */
-        .music-toggle {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: rgba(0,0,0,0.8);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            font-size: 1.5em;
-            cursor: pointer;
-            z-index: 100;
-            backdrop-filter: blur(10px);
-        }
-
-        /* Responsive */
-        @media (max-width: 480px) {
-            .container {
-                margin: 10px;
-                padding: 20px;
-            }
-            h1 {
-                font-size: 2em;
-            }
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .container {
-            animation: fadeInUp 0.8s ease-out;
-        }
-    </style>
 </head>
 
 <body>
-    <!-- Music Toggle Button -->
-    <button class="music-toggle" id="musicToggle" onclick="toggleMusic()">
-        <i class="fas fa-music"></i>
-    </button>
 
-    <audio id="bgMusic" loop>
-        <source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" type="audio/wav">
-    </audio>
+<header>
+    <h1>Style N Sumit Unisex Salon</h1>
+    <p>Open: 9:00 AM - 9:00 PM</p>
+</header>
 
-    <div class="container">
-        <!-- Radiance Header -->
-        <div class="header">
-            <h2><i class="fas fa-spa"></i> RADIANCE</h2>
-            <p>Premium Beauty Salon | Jaipur</p>
+<div class="hero">
+    <img src="426699757_405513295481184_1448517298834230125_n.webp.jpg">
+</div>
+
+<section>
+    <h2>Services</h2>
+
+    <div class="services">
+
+        <div class="card">
+            <h3>Hair Cut (Men)</h3>
+            <p>Normal cut - ₹100</p>
+            <p>Stylish cut - ₹150</p>
+            <p>Beard trim - ₹50</p>
         </div>
 
-        <!-- Social Links -->
-        <div class="social-links">
-            <a href="https://instagram.com/your_salon" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="https://wa.me/919999999999" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        <div class="card">
+            <h3>Hair Cut (Women)</h3>
+            <p>Basic cut - ₹350</p>
+            <p>Layer cut - ₹500</p>
+            <p>Straight cut - ₹150</p>
         </div>
 
-        <h1><i class="fas fa-crown"></i> Premium Booking</h1>
-        <p class="subtitle">Book your premium salon experience</p>
-
-        <!-- Services Section -->
-        <div class="service-section">
-            <h3><i class="fas fa-list"></i> Select Service</h3>
-            <select id="service" class="service-select" onchange="updatePrice()">
-                <option value="0|₹0">Select Service</option>
-                <option value="Haircut|₹800">✂️ Haircut - ₹800</option>
-                <option value="Hair Color|₹2500">🎨 Hair Color - ₹2500</option>
-                <option value="Styling|₹1200">💇‍♀️ Styling - ₹1200</option>
-                <option value="Blowout|₹600">💨 Blowout - ₹600</option>
-                <option value="Extensions|₹3500">💎 Extensions - ₹3500</option>
-                <option value="Makeup|₹2000">💄 Bridal Makeup - ₹2000</option>
-            </select>
-            <p id="priceDisplay" style="margin-top: 10px; font-size: 1.2em; font-weight: bold;">Price: ₹0</p>
+        <div class="card">
+            <h3>Facial</h3>
+            <p>Normal facial - ₹700</p>
+            <p>Gold facial - ₹1000</p>
+            <p>Diamond facial - ₹1200</p>
         </div>
 
-        <!-- Booking Form -->
-        <input type="text" id="name" placeholder="👤 Full Name" required>
-        <input type="tel" id="phone" placeholder="📱 Phone Number (+91)" required>
-        
-        <input type="date" id="date" min="">
-        <input type="time" id="time" step="1800">
-
-        <!-- Discount Section -->
-        <div class="coins-section">
-            <h3><i class="fas fa-coins"></i> Loyalty Coins</h3>
-            <div class="coins-count" id="coinsCount">0 Coins</div>
-            <p>10 Coins = 10% Discount | Earn 10 coins per booking</p>
-            <button onclick="redeemCoins()" class="book-btn" id="redeemBtn" style="padding: 12px; font-size: 1em;">
-                Redeem Discount
-            </button>
+        <div class="card">
+            <h3>Hair Spa</h3>
+            <p>Basic spa - ₹500</p>
+            <p>Keratin spa - ₹700</p>
+            <p>Anti-dandruff spa - ₹1200</p>
         </div>
 
-        <button class="book-btn" onclick="bookNow()">
-            <i class="fas fa-calendar-check"></i> BOOK NOW
-        </button>
-
-        <!-- Messages -->
-        <div id="msg"></div>
-
-        <!-- WhatsApp Button -->
-        <button class="whatsapp-btn" id="whatsappBtn" onclick="sendWhatsApp()" style="display: none;">
-            <i class="fab fa-whatsapp"></i> Send WhatsApp
-        </button>
-
-        <hr style="margin: 30px 0;">
-
-        <!-- Rating Section -->
-        <div style="text-align: center;">
-            <h3><i class="fas fa-star"></i> Rate Your Experience</h3>
-            <div class="stars" id="ratingStars">
-                <span class="star" onclick="setRating(1)">⭐</span>
-                <span class="star" onclick="setRating(2)">⭐</span>
-                <span class="star" onclick="setRating(3)">⭐</span>
-                <span class="star" onclick="setRating(4)">⭐</span>
-                <span class="star" onclick="setRating(5)">⭐</span>
-            </div>
-            <p id="selectedRating" style="margin-top: 10px; font-weight: bold;"></p>
-            <button class="book-btn" onclick="submitRating()" id="ratingBtn" style="padding: 12px;">
-                Submit Rating (+5 Coins)
-            </button>
-            <p id="coinMsg"></p>
-        </div>
     </div>
+</section>
 
-    <!-- Rating Reminder Modal -->
-    <div class="modal" id="ratingModal">
-        <div class="modal-content">
-            <h2><i class="fas fa-star"></i> Rate Us!</h2>
-            <p>Your service is completed. Please rate us:</p>
-            <div class="stars" id="modalStars" style="font-size: 3em;">
-                <span class="star" onclick="setModalRating(1)">⭐</span>
-                <span class="star" onclick="setModalRating(2)">⭐</span>
-                <span class="star" onclick="setModalRating(3)">⭐</span>
-                <span class="star" onclick="setModalRating(4)">⭐</span>
-                <span class="star" onclick="setModalRating(5)">⭐</span>
-            </div>
-            <button class="book-btn" onclick="submitModalRating()" style="margin-top: 20px;">Submit</button>
-            <button onclick="closeModal()" style="margin-top: 10px; background: #666;">Close</button>
-        </div>
-    </div>
+<div class="offer">
+    Hair Week Package - ₹8000 <br>
+    Special Hair Service - ₹999
+</div>
 
-    <script>
-        // EmailJS Setup - Replace with your keys
-        emailjs.init("YOUR_PUBLIC_KEY"); // Get from emailjs.com
+<section>
+    <h2>Book Appointment</h2>
 
-        // Local Storage Database
-        let bookings = JSON.parse(localStorage.getItem("bookings")) || [];
-        let coins = parseInt(localStorage.getItem("coins")) || 0;
-        let ratings = JSON.parse(localStorage.getItem("ratings")) || [];
+    <input type="text" id="name" placeholder="Step 1: Your Name"><br>
+    <input type="date" id="date"><br>
+    <input type="time" id="time"><br>
 
-        // Initialize
-        updateCoinsDisplay();
-        setMinDate();
-        checkRatingReminder();
+    <button onclick="sendWhatsApp()">Book on WhatsApp</button>
+</section>
 
-        // Set minimum date (today)
-        function setMinDate() {
-            let today = new Date().toISOString().split('T')[0];
-            document.getElementById('date').min = today;
-        }
+<section>
+    <h2>Contact</h2>
+    <p>Sawai Madhopur City Center Mall</p>
+    <p>Lucky: 94621 20750</p>
+    <p>Sumit: 75974 77986</p>
+</section>
 
-        // Update price display
-        function updatePrice() {
-            let service = document.getElementById('service').value;
-            if (service) {
-                let parts = service.split('|');
-                document.getElementById('priceDisplay').innerHTML = `Price: ${parts[1]}`;
-            }
-        }
+<section class="gallery">
+    <h2>Gallery</h2>
+    <img src="65e9d8bc50c98f9227be8bb8b9d5dadd.jpg">
+    <img src="427506271_1052622869153046_2140385892206602579_n.webp.jpg">
+</section>
 
-        // Toggle Music
-        function toggleMusic() {
-            let music = document.getElementById('bgMusic');
-            let btn = document.getElementById('musicToggle');
-            if (music.paused) {
-                music.play();
-                btn.innerHTML = '<i class="fas fa-music-slash"></i>';
-            } else {
-                music.pause();
-                btn.innerHTML = '<i class="fas fa-music"></i>';
-            }
-        }
+<footer>
+    © 2026 Style N Sumit Unisex Salon
+</footer>
 
-        // Booking Function - COMPLETE
-        function bookNow() {
-            let name = document.getElementById("name").value;
-            let phone = document.getElementById("phone").value;
-            let date = document.getElementById("date").value;
-            let time = document.getElementById("time").value;
-            let service = document.getElementById("service").value;
-            let msg = document.getElementById("msg");
+<script>
+function sendWhatsApp() {
 
-            // Validation
-            if (!name || !phone || !date || !time || !service || service === "0|₹0") {
-                showMsg("❌ Please fill all fields", "error");
-                return;
-            }
+    var name = document.getElementById("name").value;
+    var date = document.getElementById("date").value;
+    var time = document.getElementById("time").value;
 
-            let today = new Date().toISOString().split("T")[0];
-            
-            // Past date check
-            if (date < today) {
-                showMsg("❌ Cannot book past dates", "error");
-                return;
-            }
+    if(name === "" || date === "" || time === "") {
+        alert("Please complete all 3 steps first");
+        return;
+    }
 
-            // Slot availability check
-            let slotExists = bookings.find(b => b.date === date && b.time === time);
-            if (slotExists) {
-                showMsg("⚠️ Slot already booked! Choose another time", "error");
-                return;
-            }
+    var message =
+        "New Salon Booking:%0A" +
+        "Name: " + name + "%0A" +
+        "Date: " + date + "%0A" +
+        "Time: " + time;
 
-            // Generate Token
-            let token = "RAD" + Date.now().toString().slice(-6);
+    var phone = "9462120750";
+    var url = "https://wa.me/" + phone + "?text=" + message;
 
-            // Apply discount if coins available
-            let serviceParts = service.split('|');
-            let originalPrice = parseInt(serviceParts[1].replace('₹', ''));
-            let discount = Math.floor(coins / 10) * 0.1; // 10% per 10 coins
-            let finalPrice = originalPrice * (1 - discount);
-            
-            // Save Booking
-            let booking = {
-                name, phone, date, time, service: serviceParts[0],
-                token, originalPrice, discount, finalPrice,
-                bookingDate: new Date().toISOString()
-            };
-            bookings.push(booking);
-            localStorage.setItem("bookings", JSON.stringify(bookings));
+    window.open(url, "_blank");
+}
+</script>
 
-            // Add coins
-            coins += 10;
-            localStorage.setItem("coins", coins);
-            updateCoinsDisplay();
-
-            // Show success
-            showMsg(`✅ Booking Confirmed! Token: <strong>${token}</strong><br>Final Price: ₹${finalPrice.toFixed(0)}`, "success");
-            document.getElementById("whatsappBtn").style.display = "block";
-
-            // WhatsApp & Email
-            setTimeout(() => {
-                sendWhatsApp(booking);
-                sendEmailNotification(booking);
-            }, 1000);
-        }
-
-        // WhatsApp Message
-        function sendWhatsApp(booking = null) {
-            if (!booking) {
-                booking = {
-                    name: document.getElementById("name").value,
-                    phone: document.getElementById("phone").value,
-                    date: document.getElementById("date").value,
-                    time: document.getElementById("time").value
-                };
-            }
-            
-            let msg = `✨ RADIANCE Premium Salon Booking ✨%0A%0A👤 Name: ${booking.name}%0A📅 Date: ${booking.date}%0A🕒 Time: ${booking.time}%0A💎 Service: ${booking.service}%0A🎫 Token: ${booking.token}%0A💰 Final: ₹${booking.finalPrice?.toFixed(0) || 'TBD'}%0A%0AContact: +91-XXXXXXXXX`;
-            
-            window.open(`https://wa.me/919999999999?text=${msg}`, '_blank');
-        }
-
-        // Email Notification (EmailJS)
-        function sendEmailNotification(booking) {
-            emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {
-                to_email: "salon@radiance.com",
-                customer_name: booking.name,
-                customer_phone: booking.phone,
-                booking_date: booking.date,
-                booking_time: booking.time,
-                service: booking.service,
-                token: booking.token,
-                final_price: `₹${booking.finalPrice.toFixed(0)}`
-            }).then(() => {
-                console.log("Email sent!");
-            }).catch((error) => {
-                console.log("Email failed:", error);
-            });
-        }
-
-        // Coins Functions
-        function updateCoinsDisplay() {
-            document.getElementById('coinsCount').innerHTML = `${coins} Coins`;
-            if (coins >= 10) {
-                document.getElementById('redeemBtn').style.display = 'block';
-            }
-        }
-
-        function redeemCoins() {
-            if (coins >= 10) {
-                coins -= 10;
-                localStorage.setItem("coins", coins);
-                updateCoinsDisplay();
-                showMsg("🎉 10% discount applied! Redeemed 10 coins.", "success");
-            }
-        }
-
-        // Rating Functions
-        let currentRating = 0;
-        let modalRating = 0;
-
-        function setRating(stars) {
-            currentRating = stars;
-            document.getElementById('selectedRating').innerHTML = `Selected: ${stars} Stars`;
-            updateStars('ratingStars', stars);
-        }
-
-        function setModalRating(stars) {
-            modalRating = stars;
-            updateStars('modalStars', stars);
-        }
-
-        function updateStars(elementId, stars) {
-            let starsEl = document.getElementById(elementId);
-            let starElements = starsEl.querySelectorAll('.star');
-            starElements.forEach((star, index) => {
-                if (index < stars) {
-                    star.classList.add('active');
-                } else {
-                    star.classList.remove('active');
-                }
-            });
-        }
-
-        function submitRating() {
-            if (currentRating === 0) {
-                showMsg("❌ Please select rating first", "error");
-                return;
-            }
-            
-            ratings.push({
-                rating: currentRating,
-                date: new Date().toISOString()
-            });
-            localStorage.setItem("ratings", JSON.stringify(ratings));
-            
-            coins += 5;
-            localStorage.setItem("coins", coins);
-            updateCoinsDisplay();
-            
-            document.getElementById('coinMsg').innerHTML = `🎉 +5 Coins! Total: ${coins} Coins`;
-            currentRating = 0;
-            document.getElementById('selectedRating').innerHTML = '';
-        }
-
-        // Rating Reminder (24hr after booking)
-        function checkRatingReminder() {
-            let lastBooking = bookings[bookings.length - 1];
-            if (lastBooking) {
-                let bookingDate = new Date(lastBooking.bookingDate);
-                let now = new Date();
-                let hoursDiff = (now - bookingDate) / (1000 * 60 * 60);
-                
-                if (hoursDiff >= 24) {
-                    document.getElementById('ratingModal').style.display = 'block';
-                }
-            }
-        }
-
-        function submitModalRating() {
-            modalRating = currentRating;
-            submitRating();
-            closeModal();
-        }
-
-        function closeModal() {
-            document.getElementById('ratingModal').style.display = 'none';
-        }
-
-        // Message Display
-        function showMsg(text, type) {
-            let msg = document.getElementById("msg");
-            msg.innerHTML = text;
-            msg.className = type;
-        }
-
-        // Close modal on outside click
-        window.onclick = function(event) {
-            let modal = document.getElementById('ratingModal');
-            if (event.target == modal) {
-                closeModal();
-            }
-        }
-    </script>
 </body>
-                    </html>
+</html>
